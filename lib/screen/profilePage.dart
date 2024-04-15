@@ -17,12 +17,12 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
 
-  TextEditingController companyNameController = TextEditingController();
-  TextEditingController yourNameController = TextEditingController();
-  TextEditingController mobileNoController = TextEditingController();
-  TextEditingController emailAddressController = TextEditingController();
-  TextEditingController websiteController = TextEditingController();
-  TextEditingController businessAddressController = TextEditingController();
+  TextEditingController companyNameController = TextEditingController(text: profiledata.companyName);
+  TextEditingController yourNameController = TextEditingController(text: profiledata.yourName);
+  TextEditingController mobileNoController = TextEditingController(text: profiledata.mobileNo);
+  TextEditingController emailAddressController = TextEditingController(text: profiledata.emailAddress);
+  TextEditingController websiteController = TextEditingController(text: profiledata.website);
+  TextEditingController businessAddressController = TextEditingController(text: profiledata.businessAddress);
 
   @override
   Widget build(BuildContext context) {
@@ -167,6 +167,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: TextFormField(
+                      controller: yourNameController,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.person),
                         border: InputBorder.none,

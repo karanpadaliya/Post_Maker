@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
         actions: [
           InkWell(
             onTap: () {
-              Navigator.pushNamed(context, "ProfilePage");
+              Navigator.pushReplacementNamed(context, "ProfilePage");
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -260,19 +260,27 @@ class _HomePageState extends State<HomePage> {
                               padding: const EdgeInsets.all(8.0),
                               child: Stack(
                                 children: [
-                                  Image.network(
-                                    upcomingDays_imgList[index]["img"],
-                                    width: 140,
-                                    height: 200,
-                                    fit: BoxFit.cover,
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey,
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: Image.network(
+                                      upcomingDays_imgList[index]["img"],
+                                      width: 140,
+                                      height: 200,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(top: 110,left: 90),
+                                    padding: const EdgeInsets.only(
+                                        top: 110, left: 90),
                                     child: Container(
                                       height: 25,
                                       width: 50,
                                       decoration: BoxDecoration(
-                                        color: CupertinoColors.link.withOpacity(0.7),
+                                        color: CupertinoColors.link
+                                            .withOpacity(0.7),
                                         borderRadius: BorderRadius.circular(15),
                                       ),
                                       child: Center(
@@ -347,11 +355,17 @@ class _HomePageState extends State<HomePage> {
                             },
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Image.network(
-                                chaitraNavratri_imgList[index],
-                                width: 140,
-                                height: 200,
-                                fit: BoxFit.cover,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.grey,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Image.network(
+                                  chaitraNavratri_imgList[index],
+                                  width: 140,
+                                  height: 200,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           );
@@ -410,11 +424,17 @@ class _HomePageState extends State<HomePage> {
                             },
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Image.network(
-                                drBR_Ambedkar_jayanti_imgList[index],
-                                width: 140,
-                                height: 200,
-                                fit: BoxFit.cover,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.grey,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Image.network(
+                                  drBR_Ambedkar_jayanti_imgList[index],
+                                  width: 140,
+                                  height: 200,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           );
@@ -466,7 +486,18 @@ class _HomePageState extends State<HomePage> {
                         itemBuilder: (context, index) {
                           return Container(
                             color: Colors.white,
-                            child: Image.network(imgList[index]),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.grey,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Image.network(
+                                imgList[index],
+                                width: 140,
+                                height: 200,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           );
                         },
                       ),

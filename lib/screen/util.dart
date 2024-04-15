@@ -13,6 +13,10 @@ class ProfileData {
   String? xFile;
 }
 
+List<String> profileDetails = [
+
+];
+
 List<Map> upcomingDays_imgList = [
   {
     "img":
@@ -103,3 +107,4 @@ List<String> categories_imgList = [
   "https://t4.ftcdn.net/jpg/04/96/57/09/240_F_496570938_wLDb0QuqWJ4MbURBuJzAyLrSoE2bNe8q.jpg",
   "https://t3.ftcdn.net/jpg/07/54/78/28/240_F_754782818_2qi2ggCm8tkpXOy3eJCZDxN9Z5ZCidP2.jpg",
 ];
+
