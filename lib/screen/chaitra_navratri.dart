@@ -11,6 +11,8 @@ class ChaitreNavratriPage extends StatefulWidget {
 }
 
 class _ChaitreNavratriPageState extends State<ChaitreNavratriPage> {
+  bool isList = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,6 +26,18 @@ class _ChaitreNavratriPageState extends State<ChaitreNavratriPage> {
             fontWeight: FontWeight.w600,
           ),
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                isList = !isList;
+                setState(() {});
+              },
+              child: isList ? Icon(Icons.grid_on) : Icon(Icons.list),
+            ),
+          ),
+        ],
       ),
       body: ScrollbarTheme(
         data: ScrollbarThemeData(
@@ -33,37 +47,66 @@ class _ChaitreNavratriPageState extends State<ChaitreNavratriPage> {
         ),
         child: Scrollbar(
           radius: Radius.circular(50),
-          child: GridView.builder(
-            itemCount: chaitraNavratri_imgList.length,
-            padding: EdgeInsets.all(10),
-            physics: BouncingScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-              childAspectRatio: 1,
-            ),
-            itemBuilder: (context, index) {
-              return InkWell(
-                onTap: (){
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => PostMakerPage(
-                        chaitraNavratri_imgList[index],
-                      ),
-                    ),
-                  );
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.grey,
-                    borderRadius: BorderRadius.circular(30),
+          child: isList
+              ? GridView.builder(
+                  itemCount: chaitraNavratri_imgList.length,
+                  padding: EdgeInsets.all(10),
+                  physics: BouncingScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    childAspectRatio: 1,
                   ),
-                  child: Image.network(chaitraNavratri_imgList[index]),
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => PostMakerPage(
+                              chaitraNavratri_imgList[index],
+                            ),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Image.network(chaitraNavratri_imgList[index]),
+                      ),
+                    );
+                  },
+                )
+              : ListView.builder(
+                  itemCount: chaitraNavratri_imgList.length,
+                  padding: EdgeInsets.all(10),
+                  physics: BouncingScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => PostMakerPage(
+                              chaitraNavratri_imgList[index],
+                            ),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          // color: Colors.grey,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.network(chaitraNavratri_imgList[index]),
+                        ),
+                      ),
+                    );
+                  },
                 ),
-              );
-            },
-          ),
         ),
       ),
     );

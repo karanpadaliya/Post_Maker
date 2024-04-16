@@ -108,3 +108,23 @@ List<String> categories_imgList = [
   "https://t3.ftcdn.net/jpg/07/54/78/28/240_F_754782818_2qi2ggCm8tkpXOy3eJCZDxN9Z5ZCidP2.jpg",
 ];
 
+List<String> fontStyle = [
+
+  "Rubik",
+  "BebasNeue",
+  "Caveat",
+  "ChakraPetch",
+  "DancingScript",
+  "IndieFlower",
+  "Jersey20",
+  "Jersey20Charted",
+  "JosefinSans",
+  "Lugrasimo",
+  "Pacifico",
+  "Poppins",
+  "Roboto",
+  "RobotoSlab",
+  "Satisfy",
+  "TitilliumWeb",
+];
+

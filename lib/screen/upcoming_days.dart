@@ -11,6 +11,9 @@ class UpComingDaysPage extends StatefulWidget {
 }
 
 class _UpComingDaysPageState extends State<UpComingDaysPage> {
+
+  bool isList = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,8 +27,20 @@ class _UpComingDaysPageState extends State<UpComingDaysPage> {
         ),
         backgroundColor: CupertinoColors.darkBackgroundGray,
         foregroundColor: Colors.white,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                isList = !isList;
+                setState(() {});
+              },
+              child: isList ? Icon(Icons.grid_on) : Icon(Icons.list),
+            ),
+          ),
+        ],
       ),
-      body: GridView.builder(
+      body: isList ? GridView.builder(
         itemCount: upcomingDays_imgList.length,
         padding: EdgeInsets.all(10),
         physics: BouncingScrollPhysics(),
@@ -52,6 +67,33 @@ class _UpComingDaysPageState extends State<UpComingDaysPage> {
                 borderRadius: BorderRadius.circular(30),
               ),
               child: Image.network(upcomingDays_imgList[index]["img"]),
+            ),
+          );
+        },
+      ) : ListView.builder(
+        itemCount: upcomingDays_imgList.length,
+        padding: EdgeInsets.all(10),
+        physics: BouncingScrollPhysics(),
+        itemBuilder: (context, index) {
+          return InkWell(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => PostMakerPage(
+                    upcomingDays_imgList[index]["img"],
+                  ),
+                ),
+              );
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                // color: Colors.grey,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.network(upcomingDays_imgList[index]["img"]),
+              ),
             ),
           );
         },

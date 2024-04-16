@@ -1,6 +1,6 @@
 import 'dart:math';
-
 import 'package:fastival_app/screen/dataPage.dart';
+import 'package:fastival_app/screen/util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -29,6 +29,13 @@ class _PostMakerPageState extends State<PostMakerPage> {
   double leftEmailAddress = 0.0, topEmailAddress = 0.0;
   double leftWebsite = 0.0, topWebsite = 0.0;
   double leftBusinessAddress = 0.0, topBusinessAddress = 0.0;
+
+  String? companyNameFont,
+      yourNameFont,
+      mobileNoFont,
+      emailAddressFont,
+      websiteFont,
+      businessAddressFont;
 
   @override
   Widget build(BuildContext context) {
@@ -81,6 +88,7 @@ class _PostMakerPageState extends State<PostMakerPage> {
                                     profiledata.businessAddress.toString(),
                                     style: TextStyle(
                                       fontSize: 15,
+                                      fontFamily: businessAddressFont,
                                       color: Colors.indigo,
                                     ),
                                   ),
@@ -117,6 +125,7 @@ class _PostMakerPageState extends State<PostMakerPage> {
                                     profiledata.website.toString(),
                                     style: TextStyle(
                                       fontSize: 15,
+                                      fontFamily: websiteFont,
                                       color: Colors.indigo,
                                     ),
                                   ),
@@ -153,6 +162,7 @@ class _PostMakerPageState extends State<PostMakerPage> {
                                     profiledata.emailAddress.toString(),
                                     style: TextStyle(
                                       fontSize: 15,
+                                      fontFamily: emailAddressFont,
                                       color: Colors.indigo,
                                     ),
                                   ),
@@ -189,6 +199,7 @@ class _PostMakerPageState extends State<PostMakerPage> {
                                     profiledata.mobileNo.toString(),
                                     style: TextStyle(
                                       fontSize: 15,
+                                      fontFamily: mobileNoFont,
                                       color: Colors.indigo,
                                     ),
                                   ),
@@ -225,6 +236,7 @@ class _PostMakerPageState extends State<PostMakerPage> {
                                     profiledata.yourName.toString(),
                                     style: TextStyle(
                                       fontSize: 15,
+                                      fontFamily: yourNameFont,
                                       color: Colors.indigo,
                                     ),
                                   ),
@@ -262,6 +274,7 @@ class _PostMakerPageState extends State<PostMakerPage> {
                                     profiledata.companyName.toString(),
                                     style: TextStyle(
                                       fontSize: 15,
+                                      fontFamily: companyNameFont,
                                       color: Colors.red,
                                     ),
                                   ),
@@ -421,6 +434,47 @@ class _PostMakerPageState extends State<PostMakerPage> {
                                   width: 10,
                                 ),
                               ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            "Font Style",
+                            style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: fontStyle.map((index) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 5, left: 0, right: 8),
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      companyNameFont = index;
+                                      yourNameFont = index;
+                                      mobileNoFont = index;
+                                      emailAddressFont = index;
+                                      websiteFont = index;
+                                      businessAddressFont = index;
+                                      setState(() {});
+                                    },
+                                    child: Text(
+                                      index,
+                                      style: TextStyle(
+                                        color:
+                                            CupertinoColors.darkBackgroundGray,
+                                        fontSize: 17,
+                                        fontFamily: index,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }).toList(),
                             ),
                           ),
                         ],

@@ -97,3 +97,69 @@ flutter:
     - family: Rubik
       fonts:
         - asset: assets/font/Rubik-VariableFont_wght.ttf
+
+#    Fonts List
+    - family: BebasNeue
+      fonts:
+        - asset: assets/font/fontList/BebasNeue-Regular.ttf
+
+    - family: Caveat
+      fonts:
+        - asset: assets/font/fontList/Caveat-VariableFont_wght.ttf
+
+    - family: ChakraPetch
+      fonts:
+        - asset: assets/font/fontList/ChakraPetch-Regular.ttf
+
+    - family: DancingScript
+      fonts:
+        - asset: assets/font/fontList/DancingScript-VariableFont_wght.ttf
+
+    - family: IndieFlower
+      fonts:
+        - asset: assets/font/fontList/IndieFlower-Regular.ttf
+
+    - family: Jersey20
+      fonts:
+        - asset: assets/font/fontList/Jersey20-Regular.ttf
+
+    - family: Jersey20Charted
+      fonts:
+        - asset: assets/font/fontList/Jersey20Charted-Regular.ttf
+
+    - family: JosefinSans
+      fonts:
+        - asset: assets/font/fontList/JosefinSans-VariableFont_wght.ttf
+
+    - family: Lugrasimo
+      fonts:
+        - asset: assets/font/fontList/Lugrasimo-Regular.ttf
+
+    - family: Pacifico
+      fonts:
+        - asset: assets/font/fontList/Pacifico-Regular.ttf
+
+    - family: Poppins
+      fonts:
+        - asset: assets/font/fontList/Poppins-Regular.ttf
+
+    - family: Roboto
+      fonts:
+        - asset: assets/font/fontList/Roboto-Regular.ttf
+
+    - family: RobotoSlab
+      fonts:
+        - asset: assets/font/fontList/RobotoSlab-VariableFont_wght.ttf
+
+    - family: Satisfy
+      fonts:
+        - asset: assets/font/fontList/Satisfy-Regular.ttf
+
+    - family: TitilliumWeb
+      fonts:
+        - asset: assets/font/fontList/TitilliumWeb-Regular.ttf
+
+
+
+
+
