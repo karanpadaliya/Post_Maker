@@ -3,8 +3,9 @@ import 'package:fastival_app/screen/chaitra_navratri.dart';
 import 'package:fastival_app/screen/dr_b_r_ambedkar_page.dart';
 import 'package:fastival_app/screen/homePage.dart';
 import 'package:fastival_app/screen/main_screen.dart';
-import 'package:fastival_app/screen/post_maker_page.dart';
 import 'package:fastival_app/screen/profilePage.dart';
+import 'package:fastival_app/screen/save_image.dart';
+import 'package:fastival_app/screen/searchPage.dart';
 import 'package:fastival_app/screen/upcoming_days.dart';
 import 'package:flutter/material.dart';
 
@@ -38,6 +39,8 @@ class _MainPageState extends State<MainPage> {
         "ChaitreNavratriPage": (context) => ChaitreNavratriPage(),
         "Dr_BR_Ambedkar_Page": (context) => Dr_BR_Ambedkar_Page(),
         "CategoriesPage": (context) => CategoriesPage(),
+        "SaveImage": (context) => SaveImage(),
+        "SearchPage": (context) => SearchPage(),
         // "PostMakerPage": (context) => PostMakerPage(),
         // "invoice": (context) => AddInvoice(),
       },

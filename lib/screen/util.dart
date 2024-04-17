@@ -1,3 +1,8 @@
+import 'dart:typed_data';
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+
 class ProfileData {
   //profile Data
   String? gallery;
@@ -14,49 +19,48 @@ class ProfileData {
 }
 
 List<String> profileDetails = [
-
 ];
 
 List<Map> upcomingDays_imgList = [
   {
     "img":
-        "https://drive.google.com/uc?export=view&id=1S4-AK95ioEaC3tLkZ9EcsMAPTa8FeW0l",
+    "https://drive.google.com/uc?export=view&id=1S4-AK95ioEaC3tLkZ9EcsMAPTa8FeW0l",
     "day": "9-APR",
 //chaitraNavratri_imgList
   },
   {
     "img":
-        "https://drive.google.com/uc?export=view&id=1ZTh7c4946sDD5PQIrOxmwcW8XEAluCNE",
+    "https://drive.google.com/uc?export=view&id=1ZTh7c4946sDD5PQIrOxmwcW8XEAluCNE",
     "day": "9-APR",
 //drBR_Ambedkar_jayanti_imgList
   },
   {
     "img":
-        "https://drive.google.com/uc?export=view&id=15sedslZGVA8Kx63QqlN9m86ii_tJsmS8",
+    "https://drive.google.com/uc?export=view&id=15sedslZGVA8Kx63QqlN9m86ii_tJsmS8",
     "day": "9-APR",
 //chaitraNavratri_imgList
   },
   {
     "img":
-        "https://drive.google.com/uc?export=view&id=1dgEUyewJkmdZ4E4u0MvEf7Ueo86GE_vl",
+    "https://drive.google.com/uc?export=view&id=1dgEUyewJkmdZ4E4u0MvEf7Ueo86GE_vl",
     "day": "9-APR",
 //drBR_Ambedkar_jayanti_imgList
   },
   {
     "img":
-        "https://drive.google.com/uc?export=view&id=1MXONc25CEhKLIClmpegK5kF0RO6lslWT",
+    "https://drive.google.com/uc?export=view&id=1MXONc25CEhKLIClmpegK5kF0RO6lslWT",
     "day": "9-APR",
 //chaitraNavratri_imgList
   },
   {
     "img":
-        "https://drive.google.com/uc?export=view&id=1m7Pozq8pw56r7RoZ2TK6MkDQgh6hACou",
+    "https://drive.google.com/uc?export=view&id=1m7Pozq8pw56r7RoZ2TK6MkDQgh6hACou",
     "day": "9-APR",
 //chaitraNavratri_imgList
   },
   {
     "img":
-        "https://drive.google.com/uc?export=view&id=1ABkzXF3bE7qX5wxqRKqHpafqbX6U5Lkr",
+    "https://drive.google.com/uc?export=view&id=1ABkzXF3bE7qX5wxqRKqHpafqbX6U5Lkr",
     "day": "9-APR",
 //chaitraNavratri_imgList
   },
@@ -128,3 +132,35 @@ List<String> fontStyle = [
   "TitilliumWeb",
 ];
 
+List<Color> fontColor = [
+  Colors.black,
+  Colors.red,
+  Colors.green,
+  Colors.blue,
+  Colors.yellow,
+  Colors.orange,
+  Colors.purple,
+  Colors.pink,
+  Colors.teal,
+  Colors.cyan,
+  Colors.brown,
+  Colors.grey,
+  Colors.indigo,
+  Colors.amber,
+  Colors.deepOrange,
+  Colors.deepPurple,
+  Colors.lightBlue,
+  Colors.lightGreen,
+  Colors.lime,
+  Colors.deepOrangeAccent,
+  Colors.deepPurpleAccent,
+  Colors.lightBlueAccent,
+  Colors.lightGreenAccent,
+  Colors.limeAccent,
+  Colors.amberAccent,
+  Colors.cyanAccent,
+  Colors.indigoAccent,
+  Colors.orangeAccent,
+];
+
+Uint8List? savedImg;

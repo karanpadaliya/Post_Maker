@@ -64,7 +64,7 @@ class _UpComingDaysPageState extends State<UpComingDaysPage> {
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.grey,
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(27),
               ),
               child: Image.network(upcomingDays_imgList[index]["img"]),
             ),

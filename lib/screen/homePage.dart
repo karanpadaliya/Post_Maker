@@ -16,6 +16,7 @@ class HomePage extends StatefulWidget {
 void initState() {}
 
 class _HomePageState extends State<HomePage> {
+
   String? bgImg;
 
   //for Slider
@@ -47,7 +48,7 @@ class _HomePageState extends State<HomePage> {
     );
 
     return Scaffold(
-      backgroundColor: CupertinoColors.darkBackgroundGray,
+      backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: CupertinoColors.label,
         foregroundColor: CupertinoColors.systemGroupedBackground,
@@ -61,6 +62,16 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         actions: [
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, "SearchPage");
+            },
+            child: Icon(
+              Icons.search,
+              size: 32,
+            ),
+          ),
+          SizedBox(width: 10,),
           InkWell(
             onTap: () {
               Navigator.pushReplacementNamed(context, "ProfilePage");
@@ -78,43 +89,9 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Stack(
         children: [
-          //search box
-          Container(
-            width: double.infinity,
-            color: CupertinoColors.black,
-            child: Padding(
-              padding: const EdgeInsets.only(
-                  top: 10, left: 30, bottom: 30, right: 30),
-              child: Container(
-                height: 50,
-                width: 350,
-                padding: EdgeInsets.only(left: 7, right: 12),
-                decoration: BoxDecoration(
-                  color: CupertinoColors.extraLightBackgroundGray,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(20),
-                  ),
-                ),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                      Icons.search,
-                      size: 25,
-                    ),
-                    hintText: "Search",
-                    hintStyle: TextStyle(
-                      color: Colors.black,
-                    ),
-                    border: InputBorder.none,
-                  ),
-                ),
-              ),
-            ),
-          ),
-
           //slider images
           Padding(
-            padding: const EdgeInsets.only(top: 80),
+            padding: const EdgeInsets.only(top: 20),
             child: Container(
               height: 250,
               width: double.infinity,
@@ -177,7 +154,7 @@ class _HomePageState extends State<HomePage> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 color: currentIndex == entry.key
-                                    ? Colors.red
+                                    ? CupertinoColors.link
                                     : Colors.white,
                               ),
                             ),
@@ -193,7 +170,7 @@ class _HomePageState extends State<HomePage> {
 
           //bottom Container
           Padding(
-            padding: const EdgeInsets.only(top: 330),
+            padding: const EdgeInsets.only(top: 280),
             child: SingleChildScrollView(
               physics: BouncingScrollPhysics(),
               child: Container(
