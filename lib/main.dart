@@ -7,7 +7,9 @@ import 'package:fastival_app/screen/profilePage.dart';
 import 'package:fastival_app/screen/save_image.dart';
 import 'package:fastival_app/screen/searchPage.dart';
 import 'package:fastival_app/screen/upcoming_days.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(MainPage());
@@ -15,7 +17,6 @@ void main() {
 
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key});
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -24,6 +25,19 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: CupertinoColors.label,
+        systemNavigationBarColor: CupertinoColors.label,
+        systemNavigationBarDividerColor: CupertinoColors.label,
+      ),
+    );
+    SystemChrome.setPreferredOrientations(
+      [
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ],
+    );
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // home: SplashScreen(),

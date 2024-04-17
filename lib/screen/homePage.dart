@@ -16,7 +16,6 @@ class HomePage extends StatefulWidget {
 void initState() {}
 
 class _HomePageState extends State<HomePage> {
-
   String? bgImg;
 
   //for Slider
@@ -47,444 +46,486 @@ class _HomePageState extends State<HomePage> {
       ],
     );
 
-    return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: CupertinoColors.label,
-        foregroundColor: CupertinoColors.systemGroupedBackground,
-        title: Text(
-          "Post Maker",
-          style: TextStyle(
-            fontSize: 23,
-            fontWeight: FontWeight.w600,
-            wordSpacing: 2,
-            letterSpacing: 1,
-          ),
-        ),
-        actions: [
-          InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, "SearchPage");
-            },
-            child: Icon(
-              Icons.search,
-              size: 32,
+    //conformation from user want to exit the app
+    Future<bool> _onWillPop() async {
+      return (await showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text('Are you sure?'),
+              content: Text('Do you want to exit the app?'),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(false),
+                  child: Text(
+                    'No',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(true),
+                  child: Text(
+                    'Yes',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )) ??
+          false;
+    }
+
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        appBar: AppBar(
+          backgroundColor: CupertinoColors.label,
+          foregroundColor: CupertinoColors.systemGroupedBackground,
+          title: Text(
+            "Post Maker",
+            style: TextStyle(
+              fontSize: 23,
+              fontWeight: FontWeight.w600,
+              wordSpacing: 2,
+              letterSpacing: 1,
             ),
           ),
-          SizedBox(width: 10,),
-          InkWell(
-            onTap: () {
-              Navigator.pushReplacementNamed(context, "ProfilePage");
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
+          actions: [
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, "SearchPage");
+              },
               child: Icon(
-                Icons.account_circle,
+                Icons.search,
                 size: 32,
               ),
             ),
-          ),
-        ],
-        // elevation: 1,
-      ),
-      body: Stack(
-        children: [
-          //slider images
-          Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child: Container(
-              height: 250,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: CupertinoColors.label,
-                // borderRadius: BorderRadius.only(
-                //   bottomRight: Radius.circular(30),
-                //   bottomLeft: Radius.circular(30),
-                // ),
-              ),
-              child: Stack(
-                children: [
-                  InkWell(
-                    onTap: () {
-                      print(currentIndex);
-                    },
-                    child: CarouselSlider(
-                      items: imageList
-                          .map(
-                            (item) => Image.asset(
-                              item['image_path'],
-                              // fit: BoxFit.cover,
-                              width: double.infinity,
-                            ),
-                          )
-                          .toList(),
-                      carouselController: carouselController,
-                      options: CarouselOptions(
-                        scrollPhysics: BouncingScrollPhysics(),
-                        autoPlay: true,
-                        aspectRatio: 2,
-                        viewportFraction: 1,
-                        onPageChanged: (index, reson) {
-                          setState(
-                            () {
-                              currentIndex = index;
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 10,
-                    left: 0,
-                    right: 0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: imageList.asMap().entries.map(
-                        (entry) {
-                          return GestureDetector(
-                            onTap: () =>
-                                carouselController.animateToPage(entry.key),
-                            child: Container(
-                              width: currentIndex == entry.key ? 17 : 7,
-                              height: 7.0,
-                              margin: const EdgeInsets.symmetric(
-                                horizontal: 3.0,
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: currentIndex == entry.key
-                                    ? CupertinoColors.link
-                                    : Colors.white,
-                              ),
-                            ),
-                          );
-                        },
-                      ).toList(),
-                    ),
-                  ),
-                ],
+            SizedBox(
+              width: 10,
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.pushReplacementNamed(context, "ProfilePage");
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(
+                  Icons.account_circle,
+                  size: 32,
+                ),
               ),
             ),
-          ),
-
-          //bottom Container
-          Padding(
-            padding: const EdgeInsets.only(top: 280),
-            child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
+          ],
+          // elevation: 1,
+        ),
+        body: Stack(
+          children: [
+            //slider images
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
               child: Container(
+                height: 250,
+                width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
-                  ),
+                  color: CupertinoColors.label,
+                  // borderRadius: BorderRadius.only(
+                  //   bottomRight: Radius.circular(30),
+                  //   bottomLeft: Radius.circular(30),
+                  // ),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                child: Stack(
                   children: [
-                    //Upcoming Days
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Upcoming Days",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, "UpComingDaysPage");
-                            },
-                            child: Text(
-                              "See all",
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: CupertinoColors.link,
+                    InkWell(
+                      onTap: () {
+                        print(currentIndex);
+                      },
+                      child: CarouselSlider(
+                        items: imageList
+                            .map(
+                              (item) => Image.asset(
+                                item['image_path'],
+                                // fit: BoxFit.cover,
+                                width: double.infinity,
                               ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 150,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: upcomingDays_imgList.length,
-                        itemBuilder: (context, index) {
-                          return InkWell(
-                            onTap: () {
-                              bgImg = upcomingDays_imgList[index]["img"];
-                              // Navigator.pushNamed(context, "UpComingDaysPage");
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => PostMakerPage(
-                                    upcomingDays_imgList[index]["img"],
-                                  ),
-                                ),
-                              );
-                              setState(() {});
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Stack(
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.grey,
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    child: Image.network(
-                                      upcomingDays_imgList[index]["img"],
-                                      width: 140,
-                                      height: 200,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 110, left: 90),
-                                    child: Container(
-                                      height: 25,
-                                      width: 50,
-                                      decoration: BoxDecoration(
-                                        color: CupertinoColors.link
-                                            .withOpacity(0.7),
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          "${upcomingDays_imgList[index]["day"]}",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-
-                    //Navratri Days
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Chaitra Navratri",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                  context, "ChaitreNavratriPage");
-                            },
-                            child: Text(
-                              "See all",
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: CupertinoColors.link,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 150,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: chaitraNavratri_imgList.length,
-                        itemBuilder: (context, index) {
-                          return InkWell(
-                            onTap: () {
-                              bgImg = chaitraNavratri_imgList[index];
-                              // Navigator.pushNamed(context, "ChaitreNavratriPage");
-                              setState(() {});
-                              // Navigator.pushNamed(context, "PostMakerPage");
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => PostMakerPage(
-                                    chaitraNavratri_imgList[index],
-                                  ),
-                                ),
-                              );
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.grey,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Image.network(
-                                  chaitraNavratri_imgList[index],
-                                  width: 140,
-                                  height: 200,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-
-                    //Dr. B.R. Ambedkar Jayanti Days
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Dr. B.R. Ambedkar Jayanti",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                  context, "Dr_BR_Ambedkar_Page");
-                            },
-                            child: Text(
-                              "See all",
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: CupertinoColors.link,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 150,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: drBR_Ambedkar_jayanti_imgList.length,
-                        itemBuilder: (context, index) {
-                          return InkWell(
-                            onTap: () {
-                              bgImg = drBR_Ambedkar_jayanti_imgList[index];
-                              // Navigator.pushNamed(context, "Dr_BR_Ambedkar_Page");
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => PostMakerPage(
-                                    drBR_Ambedkar_jayanti_imgList[index],
-                                  ),
-                                ),
-                              );
-                              setState(() {});
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.grey,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Image.network(
-                                  drBR_Ambedkar_jayanti_imgList[index],
-                                  width: 140,
-                                  height: 200,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-
-                    //Categories
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Categories",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, "CategoriesPage");
-                            },
-                            child: Text(
-                              "See all",
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: CupertinoColors.link,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 300,
-                      child: GridView.builder(
-                        itemCount: imgList.length,
-                        padding: EdgeInsets.all(10),
-                        physics: BouncingScrollPhysics(),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 10,
-                          // childAspectRatio: 3,
+                            )
+                            .toList(),
+                        carouselController: carouselController,
+                        options: CarouselOptions(
+                          scrollPhysics: BouncingScrollPhysics(),
+                          autoPlay: true,
+                          aspectRatio: 2,
+                          viewportFraction: 1,
+                          onPageChanged: (index, reson) {
+                            setState(
+                              () {
+                                currentIndex = index;
+                              },
+                            );
+                          },
                         ),
-                        itemBuilder: (context, index) {
-                          return Container(
-                            color: Colors.white,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.grey,
-                                borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 10,
+                      left: 0,
+                      right: 0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: imageList.asMap().entries.map(
+                          (entry) {
+                            return GestureDetector(
+                              onTap: () =>
+                                  carouselController.animateToPage(entry.key),
+                              child: Container(
+                                width: currentIndex == entry.key ? 17 : 7,
+                                height: 7.0,
+                                margin: const EdgeInsets.symmetric(
+                                  horizontal: 3.0,
+                                ),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: currentIndex == entry.key
+                                      ? CupertinoColors.link
+                                      : Colors.white,
+                                ),
                               ),
-                              child: Image.network(
-                                imgList[index],
-                                width: 140,
-                                height: 200,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          );
-                        },
+                            );
+                          },
+                        ).toList(),
                       ),
                     ),
                   ],
                 ),
               ),
             ),
-          ),
-        ],
+
+            //bottom Container
+            Padding(
+              padding: const EdgeInsets.only(top: 280),
+              child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30),
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      //Upcoming Days
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Upcoming Days",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                    context, "UpComingDaysPage");
+                              },
+                              child: Text(
+                                "See all",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: CupertinoColors.link,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 150,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: upcomingDays_imgList.length,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () {
+                                bgImg = upcomingDays_imgList[index]["img"];
+                                // Navigator.pushNamed(context, "UpComingDaysPage");
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => PostMakerPage(
+                                      upcomingDays_imgList[index]["img"],
+                                    ),
+                                  ),
+                                );
+                                setState(() {});
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Stack(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey,
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: Image.network(
+                                        upcomingDays_imgList[index]["img"],
+                                        width: 140,
+                                        height: 200,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 110, left: 90),
+                                      child: Container(
+                                        height: 25,
+                                        width: 50,
+                                        decoration: BoxDecoration(
+                                          color: CupertinoColors.link
+                                              .withOpacity(0.7),
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            "${upcomingDays_imgList[index]["day"]}",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+
+                      //Navratri Days
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Chaitra Navratri",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                    context, "ChaitreNavratriPage");
+                              },
+                              child: Text(
+                                "See all",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: CupertinoColors.link,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 150,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: chaitraNavratri_imgList.length,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () {
+                                bgImg = chaitraNavratri_imgList[index];
+                                // Navigator.pushNamed(context, "ChaitreNavratriPage");
+                                setState(() {});
+                                // Navigator.pushNamed(context, "PostMakerPage");
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => PostMakerPage(
+                                      chaitraNavratri_imgList[index],
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey,
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Image.network(
+                                    chaitraNavratri_imgList[index],
+                                    width: 140,
+                                    height: 200,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+
+                      //Dr. B.R. Ambedkar Jayanti Days
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Dr. B.R. Ambedkar Jayanti",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                    context, "Dr_BR_Ambedkar_Page");
+                              },
+                              child: Text(
+                                "See all",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: CupertinoColors.link,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 150,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: drBR_Ambedkar_jayanti_imgList.length,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () {
+                                bgImg = drBR_Ambedkar_jayanti_imgList[index];
+                                // Navigator.pushNamed(context, "Dr_BR_Ambedkar_Page");
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => PostMakerPage(
+                                      drBR_Ambedkar_jayanti_imgList[index],
+                                    ),
+                                  ),
+                                );
+                                setState(() {});
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey,
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Image.network(
+                                    drBR_Ambedkar_jayanti_imgList[index],
+                                    width: 140,
+                                    height: 200,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+
+                      //Categories
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Categories",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pushNamed(context, "CategoriesPage");
+                              },
+                              child: Text(
+                                "See all",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: CupertinoColors.link,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 300,
+                        child: GridView.builder(
+                          itemCount: imgList.length,
+                          padding: EdgeInsets.all(10),
+                          physics: BouncingScrollPhysics(),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                            // childAspectRatio: 3,
+                          ),
+                          itemBuilder: (context, index) {
+                            return Container(
+                              color: Colors.white,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.grey,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Image.network(
+                                  imgList[index],
+                                  width: 140,
+                                  height: 200,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
