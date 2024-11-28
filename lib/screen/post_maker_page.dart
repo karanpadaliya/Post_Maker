@@ -218,6 +218,9 @@ class _PostMakerPageState extends State<PostMakerPage> {
                   Navigator.pushNamed(context, "SaveImage");
                 },
               ),
+              SizedBox(
+                width: 5,
+              ),
             ],
             backgroundColor: CupertinoColors.darkBackgroundGray,
             foregroundColor: Colors.white,
@@ -476,7 +479,7 @@ class _PostMakerPageState extends State<PostMakerPage> {
                   child: Column(
                     children: [
                       Container(
-                        height: 500,
+                        height: 540,
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -491,6 +494,40 @@ class _PostMakerPageState extends State<PostMakerPage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              Tooltip(
+                                message:
+                                    'Long press to remove Field',
+                                height: 30,
+                                // Height of the tooltip's box
+                                padding: EdgeInsets.all(10.0),
+                                margin: EdgeInsets.symmetric(
+                                    vertical: 20.0, horizontal: 50.0),
+                                verticalOffset: 30.0,
+                                preferBelow: false,
+                                showDuration: Duration(seconds: 5),
+                                decoration: BoxDecoration(
+                                  color: CupertinoColors.link,
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "How to use",
+                                      style: TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Icon(Icons.info_outline),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
                               SingleChildScrollView(
                                 physics: BouncingScrollPhysics(),
                                 scrollDirection: Axis.horizontal,

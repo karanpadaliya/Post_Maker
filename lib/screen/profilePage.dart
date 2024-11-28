@@ -139,6 +139,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: TextFormField(
+                      textInputAction: TextInputAction.next,
                       controller: companyNameController,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.factory_outlined),
@@ -167,6 +168,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: TextFormField(
+                      textInputAction: TextInputAction.next,
                       controller: yourNameController,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.person),
@@ -195,6 +197,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: TextFormField(
+                      textInputAction: TextInputAction.next,
                       controller: mobileNoController,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
@@ -224,6 +227,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: TextFormField(
+                      textInputAction: TextInputAction.next,
                       controller: emailAddressController,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
@@ -253,6 +257,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: TextFormField(
+                      textInputAction: TextInputAction.next,
                       controller: websiteController,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
